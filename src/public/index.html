@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Real Time Chat</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Pacifico&display=swap"> 
+        <link rel="stylesheet" href="./css/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    </head>
+    <body>
+        <section id="app" class="hero is-fullheight">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">Real Time Chat</h1>
+                </div>
+
+                <template v-if="step === 'nick'">
+                    <div class="columns">
+                        <div class='column is-12'>
+                            <div class="field has-addons">
+                                <div class="control is-expanded">
+                                    <input v-model="nick" class="input is-medium" type="text" placeholder="Ingrese un Nick">
+                                </div>
+                                <div class="control">
+                                    <a @click="signIn" class="button is-info is-medium">
+                                        Ingresar
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+
+                <template v-else>
+                    <div class="chat-container-ppal">
+                        <div  class="chat-container">
+                            <div v-for="item in messages" :class="{'has-text-right': nick === item.nick }">
+                                <div class="box chat-message" :class="{'me': nick === item.nick }">
+                                    <span class="has-text-weight-bold author">{{ item.nick }}</span> - {{ item.message }}
+                                    <span class="is-italic has-text-grey-light is-size-7">
+                                        {{ new Date(item.date).toLocaleDateString() }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field has-addons">
+                        <div class="control is-expanded">
+                            <input v-model="message" class="input is-medium" type="text" 
+                            placeholder="Ingrese el mensaje">
+                        </div>
+                        <div class="control">
+                            <a @click="send" class="button is-info is-medium">
+                                <i class="fas fa-paper-plane"></i>
+                            </a>
+                        </div>
+                    </div>
+                </template>
+            </div>
+
+            <footer class="hero-foot">
+                <div class="container section has-text-centered">
+                    <p v-if="step === 'chat'">Conectado como <b>{{ nick }}</b></p>
+                    <a href="https://github.com/Diego-18/real.time.chat" target="__blank" title="Accede al código desde acá.">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </footer>
+        </section>
+    </body>
+    <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="./js/chat.js"></script>
+</html>
