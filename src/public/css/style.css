@@ -1,0 +1,61 @@
+body{
+    background: #117a65; 
+}
+
+.chat-container-ppal{
+    width: 50%;
+    border: #fff solid 1px;
+    border-radius: 8px;
+    padding: 1%;
+    margin: 0 5%;
+}
+
+.chat-message{
+    /* margin: 1% 0%; */
+}
+
+.author{
+    font-family: 'Bebas Neue', cursive;
+}
+
+.title{
+    font-family: 'Pacifico', cursive;
+}
+
+.title, footer, .fab{
+    color: #fff;
+}
+
+.fab{
+    font-size: 3rem;
+    text-align: center;
+    margin: 1% 0%;
+}
+
+.chat-container {
+    max-height: 600px;
+    overflow-y: scroll;
+    padding: 0px 1.5rem;
+}
+
+.chat-message {
+    margin-bottom: 1.5rem;
+    display: inline-block;
+}
+
+.chat-message.me {
+    background: #dcf8c6;
+}
+
+/*
+ * SMARTPHONE
+*/
+@media screen and (max-width: 749px) {
+    .hero-body {
+        flex-flow: column wrap;
+    }
+    .chat-container-ppal{
+        width: 80%;
+        margin: 5%;
+    }
+}
